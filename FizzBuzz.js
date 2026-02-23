@@ -1,13 +1,28 @@
-num = prompt("Enter a number: ");
+const form = document.getElementById("form");
+const result = document.getElementById("result");
 
-for (i = 1; i <= num; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-        console.log("FizzBuzz");} 
-    else if (i % 3 === 0) {
-        console.log("Fizz");} 
-    else if (i % 5 === 0) {
-        console.log("Buzz");}
-    else {
-        console.log(i);
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const input = document.getElementById("num_input");
+    const num = Number(input.value);
+
+    if (input.value.trim() === "" || isNaN(num)) {
+        result.textContent = "Please enter a valid number.";
+        return;
     }
-}
+
+    let output;
+
+    if (num % 3 === 0 && num % 5 === 0) {
+        output = "FizzBuzz";
+    } else if (num % 3 === 0) {
+        output = "Fizz";
+    } else if (num % 5 === 0) {
+        output = "Buzz";
+    } else {
+        output = String(num);
+    }
+
+    result.textContent = output;
+});
